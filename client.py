@@ -128,10 +128,8 @@ def sub(topic):
     client.disconnect()
 
 def on_connect(client, userdata, flags, rc):
-    print("Thread1:connected")
-
-def on_connect2(client, userdata, flags, rc):
-    print("Thread2:connected")
+    client.subscribe('polyhose1/')
+    print("Thread1: subscribed")
 
 def is_valid_json(data):
         try:
@@ -4280,12 +4278,15 @@ def update():
 
 # display loop (in main thread)
 if __name__ == "__main__":
-    # start polling thread
-    
-    tp = Thread(target=polling_thread)
-    
-    # set daemon: polling thread will exit if main thread exit
-    tp.daemon = True
-    tp.start()
-    while True:
-        pass
+        try:
+                print("Thread1:PushedClient Initialized")
+                client = mqttClient.Client("MQTT3899886465")
+                client.username_pw_set("", "")
+                client.on_message=on_message
+                client.on_connect=on_connect
+                #client.on_log=on_log
+                client.on_disconnect=on_disconnect
+                client.connect('localhost', 1883)
+                client.loop_forever()
+        except KeyboardInterrupt:
+                client.disconnect()
