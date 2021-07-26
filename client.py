@@ -2235,7 +2235,7 @@ def on_message(client, userdata, message):
                                         mycursor.execute(sql, val)
                                         
 
-            if(count1 == 12):
+            if(count1 >= 12):
                 count1 = 0
                 #updateLang('english')
                 print("Thread1: Data Processing")

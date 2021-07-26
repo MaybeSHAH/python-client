@@ -193,7 +193,7 @@ def on_message2(client, userdata, message):
 
                                         dic['ExtProd1_1'] = fixedInt(json_obj['M-E_H_1-0']) #PIR
                                         dic['ExtProd1_2'] = fixedInt(json_obj['M-E_R_1-1']) #OPERATOR NAME
-                                        dic['ExtProd1_3'] = fixedInt(json_obj['M-M_H_1-0']) #MPIR
+                                        dic['ExtProd1_3'] = fixedInt(json_obj['M-E_H_1-56']) #MPIR
                                         dic['ExtProd1_4'] = fixedInt(json_obj['M-E_H_1-37']) #ACT_KG
                                         dic['ExtProd1_5'] = fixedInt(json_obj['M-E_R_1-16']) #Actual Speed
                                         dic['ExtProd1_6'] = fixedInt(json_obj['M-E_R_1-14']) #Ex HD PR
@@ -2797,7 +2797,7 @@ def on_message2(client, userdata, message):
                                                 mycursor.execute(sql, val)
                                                         
 
-                        if(count2 == 12):
+                        if(count2 >= 12): #dumping like counting
                                 count2 = 0;
                                 #updateLang('english')
                                 print("Thread2:Data Processing")
@@ -2817,6 +2817,7 @@ def on_message2(client, userdata, message):
                                                 dic['Mandrel1_9'] = fixedInt(json_obj['M-M_R_1-8']) #MOVABLE BLOCK SET TEMP
                                                 dic['Mandrel1_10'] = fixedInt(json_obj['M-M_R_1-9']) #FIXED BLOCK ACTUAL TEMP
                                                 dic['Mandrel1_11'] = fixedInt(json_obj['M-M_R_1-10']) #MOVABLE BLOCK ACTUAL TEMP
+                                                dic['Mandrel1_12'] = fixedInt(json_obj['M-M_H_1-0']) #MOVABLE BLOCK ACTUAL TEMP
                                                 
                                                 dic['Mandrel2_1'] = fixedInt(json_obj['M-M_R_2-0']) #PIR
                                                 dic['Mandrel2_2'] = fixedInt(json_obj['M-M_R_2-1']) #OPERATOR NAME
@@ -2829,6 +2830,8 @@ def on_message2(client, userdata, message):
                                                 dic['Mandrel2_9'] = fixedInt(json_obj['M-M_R_2-8']) #MOVABLE BLOCK SET TEMP
                                                 dic['Mandrel2_10'] = fixedInt(json_obj['M-M_R_2-9'] )#FIXED BLOCK ACTUAL TEMP
                                                 dic['Mandrel2_11'] = fixedInt(json_obj['M-M_R_2-10']) #MOVABLE BLOCK ACTUAL TEMP
+                                                dic['Mandrel2_12'] = fixedInt(json_obj['M-M_H_2-0']) #MOVABLE BLOCK ACTUAL TEMP
+
                                                 '''
                                                 dic['Mandrel3_1'] = json_obj['tags']['M-M_R_3-0'] #PIR
                                                 dic['Mandrel3_2'] = json_obj['tags']['M-M_R_3-1'] #OPERATOR NAME
@@ -2869,6 +2872,7 @@ def on_message2(client, userdata, message):
                                                 dic['Extruder1_24'] = fixedInt(json_obj['M-E_R_1-23']) #ZONE2 TEMP ACTUAL
                                                 dic['Extruder1_25'] = fixedInt(json_obj['M-E_R_1-24']) #ZONE3 TEMP SETPOINT
                                                 dic['Extruder1_26'] = fixedInt(json_obj['M-E_R_1-25']) #ZONE3 TEMP ACTUAL
+                                                dic['Extruder1_27'] = fixedInt(json_obj['M-E_H_1-56']) #ZONE3 TEMP ACTUAL
                                                 
                                                 dic['Extruder1_27'] = fixedInt(json_obj['M-E_H_1-5']) #mesh
                                                 dic['Extruder1_28'] = fixedInt(json_obj['M-E_H_1-7']) #Linear CUT
@@ -3717,6 +3721,8 @@ def on_message2(client, userdata, message):
                                                 dic['TestStop3_2'] = json_obj['M-T_S_3-1'] #Boolean value containing on off status
                                                 dic['TestStopMessage3'] = ""
                                                 
+
+                                                
                                                 sql2()
         except(error):
                 print("Error ::", error)
@@ -3748,8 +3754,8 @@ def polling_thread2():
 
 def sql2():
     try:
-        sql = "INSERT INTO mandrelreport1 ( pir , operator_name , program_name , mandrel_id , actual_od , minimum_od , maximum_od, fixed_block_st, movable_block_st, fixed_block_at, movable_block_at) VALUES ( %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        val = ( str(dic['Mandrel1_1']), str(dic['Mandrel1_2']),
+        sql = "INSERT INTO mandrelreport1 ( pir , mpir, operator_name , program_name , mandrel_id , actual_od , minimum_od , maximum_od, fixed_block_st, movable_block_st, fixed_block_at, movable_block_at) VALUES ( %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        val = ( str(dic['Mandrel1_1']), str(dic['Mandrel1_12']), str(dic['Mandrel1_2']),
                 str(dic['Mandrel1_3']), findFloat(float(dic['Mandrel1_4'])),
                 findFloat(float(dic['Mandrel1_5'])), findFloat(float(dic['Mandrel1_6'])), 
                 findFloat(float(dic['Mandrel1_7'])), findFloat(float(dic['Mandrel1_8'])), 
@@ -3758,8 +3764,8 @@ def sql2():
         mycursor.execute(sql, val)
         
 
-        sql = "INSERT INTO mandrelreport2 ( pir , operator_name , program_name , mandrel_id , actual_od , minimum_od , maximum_od, fixed_block_st, movable_block_st, fixed_block_at, movable_block_at) VALUES ( %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        val = ( str(dic['Mandrel2_1']), str(dic['Mandrel2_2']),
+        sql = "INSERT INTO mandrelreport2 ( pir , mpir, operator_name , program_name , mandrel_id , actual_od , minimum_od , maximum_od, fixed_block_st, movable_block_st, fixed_block_at, movable_block_at) VALUES ( %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        val = ( str(dic['Mandrel2_1']), str(dic['Mandrel2_12']), str(dic['Mandrel2_2']),
                 str(dic['Mandrel2_3']), findFloat(float(dic['Mandrel2_4'])),
                 findFloat(float(dic['Mandrel2_5'])), findFloat(float(dic['Mandrel2_6'])), 
                 findFloat(float(dic['Mandrel2_7'])), findFloat(float(dic['Mandrel2_8'])), 
@@ -3779,8 +3785,8 @@ def sql2():
         
         '''
         
-        sql = "INSERT INTO extruderreport1 ( pir , operator_name , line_run_feedback , od_setpoint , od_actual , id_setpoint , id_actual, thickness_set, thickness_act, ext_rpm_set, ext_rpm_act, ext_cur_set, ext_cur_act, ext_pre_set, ext_pre_act, line_mpm_set, line_mpm_act, prod_meter, head_temp_sp, head_temp_act, screw_temp_sp, screw_temp_act, zone2_temp_sp, zone2_temp_act, zone3_temp_sp, zone3_temp_act, mesh, linear_cut, tube_hot_od_set, tube_hot_od_act, tube_cold_od_set, tube_cold_od_act, pin_set_value, pin_act_value, die_set_value, die_act_value, drum_out_no, amps, screw_rpm, line_speed, batches_used, ext_qty, temp_head_set, temp_head_act, temp_zone1_set, temp_zone1_act, temp_zone2_set, temp_zone2_act, temp_zone3_set, temp_zone3_act, temp_zone4_set, temp_zone4_act, temp_zone5_set, temp_zone5_act, vaccum_set_value, vaccum_act_value, wall_thick_spec, wall_thick_act, ecc_set_value, ecc_act_value, qa_approval) VALUES ( %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
-        val = ( str(dic['Extruder1_1']), str(dic['Extruder1_2']),
+        sql = "INSERT INTO extruderreport1 ( pir , lmpir, operator_name , line_run_feedback , od_setpoint , od_actual , id_setpoint , id_actual, thickness_set, thickness_act, ext_rpm_set, ext_rpm_act, ext_cur_set, ext_cur_act, ext_pre_set, ext_pre_act, line_mpm_set, line_mpm_act, prod_meter, head_temp_sp, head_temp_act, screw_temp_sp, screw_temp_act, zone2_temp_sp, zone2_temp_act, zone3_temp_sp, zone3_temp_act, mesh, linear_cut, tube_hot_od_set, tube_hot_od_act, tube_cold_od_set, tube_cold_od_act, pin_set_value, pin_act_value, die_set_value, die_act_value, drum_out_no, amps, screw_rpm, line_speed, batches_used, ext_qty, temp_head_set, temp_head_act, temp_zone1_set, temp_zone1_act, temp_zone2_set, temp_zone2_act, temp_zone3_set, temp_zone3_act, temp_zone4_set, temp_zone4_act, temp_zone5_set, temp_zone5_act, vaccum_set_value, vaccum_act_value, wall_thick_spec, wall_thick_act, ecc_set_value, ecc_act_value, qa_approval) VALUES ( %s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        val = ( str(dic['Extruder1_1']), str(dic['Extruder1_27']), str(dic['Extruder1_2']),
                 findBool(dic['Extruder1_3']), findFloat(float(dic['Extruder1_4'])),
                 findFloat(float(dic['Extruder1_5'])), findFloat(float(dic['Extruder1_6'])), 
                 findFloat(float(dic['Extruder1_7'])), findFloat(float(dic['Extruder1_8'])), 
