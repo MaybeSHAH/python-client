@@ -2215,55 +2215,57 @@ def on_message2(client, userdata, message):
 
                                         if(globalBS.tempExtStop1 != findBool(dic['ExtStop1_2'])):
                                             globalBS.tempExtStop1 = findBool(dic['ExtStop1_2'])
+                                           # print("globalBS.tempExtStop1 After:",globalBS.tempExtStop1)
+                                           # print("findBool(dic['ExtStop1_2']):",findBool(dic['ExtStop1_2']))
                                             if(findBool(dic['ExtStop1_2']) == True):
                                                 globalBS.tempExtStopID1 = int(dic['ExtStop1_1'])
-                                            if(dic['ExtStop1_1'] == '1'):
+                                            if(globalBS.tempExtStopID1 == '1'):
                                                 dic['ExtStopMessage1'] = "Start Up Delay"
-                                            elif(dic['ExtStop1_1'] == '2'):
+                                            elif(globalBS.tempExtStopID1 == '2'):
                                                 dic['ExtStopMessage1'] = "Man Power Absent"
-                                            elif(dic['ExtStop1_1'] == '3'):
+                                            elif(globalBS.tempExtStopID1 == '3'):
                                                 dic['ExtStopMessage1'] = "Material Scortch"
-                                            elif(dic['ExtStop1_1'] == '4'):
+                                            elif(globalBS.tempExtStopID1 == '4'):
                                                 dic['ExtStopMessage1'] = "Hose Curebit Rejection"
-                                            elif(dic['ExtStop1_1'] == '5'):
+                                            elif(globalBS.tempExtStopID1 == '5'):
                                                 dic['ExtStopMessage1'] = "Cover/Tube Stripping"
-                                            elif(dic['ExtStop1_1'] == '6'):
+                                            elif(globalBS.tempExtStopID1 == '6'):
                                                 dic['ExtStopMessage1'] = "M/C Breakdown"
-                                            elif(dic['ExtStop1_1'] == '7'):
+                                            elif(globalBS.tempExtStopID1 == '7'):
                                                 dic['ExtStopMessage1'] = "Break Fast"
-                                            elif(dic['ExtStop1_1'] == '8'):
+                                            elif(globalBS.tempExtStopID1 == '8'):
                                                 dic['ExtStopMessage1'] = "Lunch"
-                                            elif(dic['ExtStop1_1'] == '9'):
+                                            elif(globalBS.tempExtStopID1 == '9'):
                                                 dic['ExtStopMessage1'] = "Dinner"
-                                            elif(dic['ExtStop1_1'] == '10'):
+                                            elif(globalBS.tempExtStopID1 == '10'):
                                                 dic['ExtStopMessage1'] = "Tea"
-                                            elif(dic['ExtStop1_1'] == '11'):
+                                            elif(globalBS.tempExtStopID1 == '11'):
                                                 dic['ExtStopMessage1'] = "Power Cut"
-                                            elif(dic['ExtStop1_1'] == '12'):
+                                            elif(globalBS.tempExtStopID1 == '12'):
                                                 dic['ExtStopMessage1'] = "Compount Shortage"
-                                            elif(dic['ExtStop1_1'] == '13'):
+                                            elif(globalBS.tempExtStopID1 == '13'):
                                                 dic['ExtStopMessage1'] = "No Plan/No Load"
-                                            elif(dic['ExtStop1_1'] == '14'):
+                                            elif(globalBS.tempExtStopID1 == '14'):
                                                 dic['ExtStopMessage1'] = "Speed Loss"
-                                            elif(dic['ExtStop1_1'] == '15'):
+                                            elif(globalBS.tempExtStopID1 == '15'):
                                                 dic['ExtStopMessage1'] = "Training"
-                                            elif(dic['ExtStop1_1'] == '16'):
+                                            elif(globalBS.tempExtStopID1 == '16'):
                                                 dic['ExtStopMessage1'] = "Mandrel Shortage"
-                                            elif(dic['ExtStop1_1'] == '17'):
+                                            elif(globalBS.tempExtStopID1 == '17'):
                                                 dic['ExtStopMessage1'] = "Drum shortage"
-                                            elif(dic['ExtStop1_1'] == '18'):
+                                            elif(globalBS.tempExtStopID1 == '18'):
                                                 dic['ExtStopMessage1'] = "Die/Pin Problem"
-                                            elif(dic['ExtStop1_1'] == '19'):
+                                            elif(globalBS.tempExtStopID1 == '19'):
                                                 dic['ExtStopMessage1'] = "5s & House keeping"
-                                            elif(dic['ExtStop1_1'] == '20'):
+                                            elif(globalBS.tempExtStopID1 == '20'):
                                                 dic['ExtStopMessage1'] = "Trial"
-                                            elif(dic['ExtStop1_1'] == '21'):
+                                            elif(globalBS.tempExtStopID1 == '21'):
                                                 dic['ExtStopMessage1'] = "Unaccountable Loss"
-                                            elif(dic['ExtStop1_1'] == '22'):
+                                            elif(globalBS.tempExtStopID1 == '22'):
                                                 dic['ExtStopMessage1'] = "Other"
-                                            elif(dic['ExtStop1_1'] == '23'):
+                                            elif(globalBS.tempExtStopID1 == '23'):
                                                 dic['ExtStopMessage1'] = "SetupTime"
-                                            elif(dic['ExtStop1_1'] == '24'):
+                                            elif(globalBS.tempExtStopID1 == '24'):
                                                 dic['ExtStopMessage1'] = "Machine Head Clean"
 
                                             if(findBool(dic['ExtStop1_2']) == True):

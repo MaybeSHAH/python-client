@@ -186,12 +186,12 @@ def on_message2(client, userdata, message):
                     dic['BraidSearchBit_8'] = fixedInt(json_obj['M-B_H_8-1']) #search Pir
                     dic['BraidDrumOut_8'] = fixedInt(json_obj['M-B_P_8-1']) #Drum Out
 
-                    print(":::::::::::::::::::::INFO::::::::::::::::::::::::::::")
-                    print("BraidSearchBit ::", dic['BraidSearchBit_1'])
-                    print("BraidTagBit_1 ::", dic['BraidTagBit_1'])
+                    #print(":::::::::::::::::::::INFO::::::::::::::::::::::::::::")
+                    #print("BraidSearchBit ::", dic['BraidSearchBit_1'])
+                    #print("BraidTagBit_1 ::", dic['BraidTagBit_1'])
                     if(findBool(dic['BraidTagBit_1'])):
                         dataCheck(str(dic['BraidSearchBit_1']), "Braider 1", "M-B_H_1-0", "Linear Extruder 1", "M-B_H_1-61", "M-B_H_1-62", "M-B_P_1-0", str(dic['BraidDrumOut_1']))
-                    print("BraidProStart_1 ::", dic['BraidProStart_1'])
+                    #print("BraidProStart_1 ::", dic['BraidProStart_1'])
                     if(findBool(dic['BraidProStart_1']) and not globalBS.braidProcessStart1):
                         #
                         
@@ -305,7 +305,7 @@ def on_message2(client, userdata, message):
                     #print("BraidTagBit_6 ::", dic['BraidTagBit_6'])
                     if(findBool(dic['BraidTagBit_6'])):
                         dataCheck(str(dic['BraidSearchBit_6']), "Braider 6", "M-B_H_6-0", "Linear Extruder 1", "M-B_H_6-61", "M-B_H_6-62", "M-B_P_6-0", str(dic['BraidDrumOut_6']))
-                    print("BraidProStart_6 ::", dic['BraidProStart_6'])
+                    #print("BraidProStart_6 ::", dic['BraidProStart_6'])
                     if(findBool(dic['BraidProStart_6']) and not globalBS.braidProcessStart6):
                         
                         if(int(dic['BraidOkPir_6']) != 0 and int(dic['BraidOkPir_6']) != 1):
@@ -485,8 +485,8 @@ def on_message2(client, userdata, message):
                     if(findBool(dic['TagBit'])):
                         dataCheck(str(dic['SearchBit']), "Linear Extruder 1", "M-E_H_1-0", "", "M-E_H_1-54", "M-E_H_1-55", "M-E_P_1-0", str(dic['DrumOut']))
                     #
-                    print("ProStart ::", dic['ProStart'])
-                    print("processStart (Bool) ::", globalBS.processStart)
+                    #print("ProStart ::", dic['ProStart'])
+                    #print("processStart (Bool) ::", globalBS.processStart)
                     if(findBool(dic['ProStart']) and not globalBS.processStart):
                         #globalBS.processStart = True
                         #print("OkPir ::", dic['ProStart'])
@@ -539,7 +539,7 @@ def on_message2(client, userdata, message):
                                 globalBS.covexOldTagBit = False
                         
                     #::::::::::::::::::::::::::::::::::::::::::::::::::Vulcanizer::::::::::::::::::::::::::::::::::::::::::::::::
-                    print("VulTagBit::", dic['VulTagBit'])
+                    #print("VulTagBit::", dic['VulTagBit'])
                     if(findBool(dic['VulTagBit'])):
                         dataCheck(str(dic['VulSearchBit']), "Vulcaniser 1", "M-V_H_1-12", "Cover Extruder", "M-V_H_1-14", "M-V_H_1-15", "M-V_P_1-0", str(dic['VulDrumOut']))
                     #
@@ -581,7 +581,7 @@ def on_message2(client, userdata, message):
                         if(dic['VulOkPir1'] != 0):
                             dataCheck1(str(dic['VulOkPir1']), str(dic['VulProHalf']), "pro_half", "Vulcaniser 1", "Cover Extruder", "", str(dic['VulDrumOut1']), str(dic['VulDrumOut1']))
                    
-                    print("VulProStop::", dic['VulProStop'])
+                    #print("VulProStop::", dic['VulProStop'])
                     if(findBool(dic['VulProStop']) and not globalBS.vulProcessStop):
                         if(dic['VulOkPir1'] != 0):
                             if(dataCheck1(str(dic['VulOkPir1']), str(dic['VulProStop']), "pro_stop", "Vulcaniser 1", "Cover Extruder", "", str(dic['VulDrumOut1']), str(dic['VulDrumOut1']))):
@@ -647,7 +647,7 @@ def on_message2(client, userdata, message):
                     if(findBool(dic['TestTagBit_2'])):
                         dataCheck(str(dic['TestSearchBit_2']), "Testing 2", "M-T_R_2-0", "Vulcaniser 1", "M-T_H_2-9", "M-T_H_2-10", "M-T_P_2-0", str(dic['TestDrumOut_2']))
                     #
-                    print("TestProStart_2 ::", dic['TestProStart_2'])
+                    #print("TestProStart_2 ::", dic['TestProStart_2'])
                     if(findBool(dic['TestProStart_2']) and not globalBS.testProcessStart2):
                         
                         if(int(dic['TestOkPir_2']) != 0 and int(dic['TestOkPir_2']) != 1):
@@ -833,7 +833,7 @@ def dataCheck1(searchBit, proHalf, valfor, machineName, searchMachine, mpir, dru
     if(temp1['no'] != 0):
         try:
             if(valfor == "pro_start"):
-                print("Trying ", searchBit)
+                #print("Trying ", searchBit)
                 sql = "SELECT * FROM `pirtracking` WHERE pir_no = '" + searchBit + "' AND machine_name like '" + machineName.split()[0] + "%' order by date_time desc limit 1"
                 mycursor.execute(sql)
                 if (mycursor.rowcount == 0):
